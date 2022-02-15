@@ -5,7 +5,7 @@ let playerPoint = 0;
 let computerPoint = 0;
 
 // Start the game
-game();
+// game();
 
 // computer selection
 function computerPlay() {
@@ -14,21 +14,31 @@ function computerPlay() {
   return computerSelection;
 }
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt("rock, paper or scissors?").toLowerCase();
-    console.log(`You: ${playerSelection}`);
-    let computerSelection = computerPlay();
-    console.log(`Computer: ${computerSelection}`);
+function playerPlay() {
+  const playerSelection = this.classList[0];
+  console.log(this);
+  game(playerSelection);
+}
 
-    // Compare Selections
-    playRound(playerSelection, computerSelection);
+function game(s) {
+  // let playerSelection = prompt("rock, paper or scissors?").toLowerCase();
+  // let playerSelection = playerPlay();
+  const playerSelection = s;
+  console.log(`You: ${playerSelection}`);
+  let computerSelection = computerPlay();
+  console.log(`Computer: ${computerSelection}`);
 
-    console.log(`${playerPoint} to ${computerPoint}`);
+  // Compare Selections
+  playRound(playerSelection, computerSelection);
+
+  if (playerPoint > 4 || computerPoint > 4) {
+    result(playerPoint, computerPoint);
   }
+}
 
-  console.log(`GAME OVER`);
-
+function result(playerPoint, computerPoint) {
+  // console.log("\n");
+  console.log("GAME OVER!!!!!!!");
   if (playerPoint > computerPoint) {
     console.log(`You Win! ${playerPoint} to ${computerPoint}`);
   } else if (playerPoint < computerPoint) {
@@ -36,6 +46,10 @@ function game() {
   } else {
     console.log(`Tie! ${playerPoint} to ${computerPoint}`);
   }
+
+  buttons.forEach((button) => {
+    button.removeEventListener("click", playerPlay);
+  });
 }
 
 function playRound(player, computer) {
@@ -69,3 +83,16 @@ function playRound(player, computer) {
       break;
   }
 }
+
+// const seleRock = document.querySelector(".rock");
+// const selePaper = document.querySelector(".paper");
+// const seleScissors = document.querySelector(".scissors");
+
+// seleRock.addEventListener("click", playerPlay);
+// selePaper.addEventListener("click", playerPlay);
+// seleScissors.addEventListener("click", playerPlay);
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", playerPlay);
+});
