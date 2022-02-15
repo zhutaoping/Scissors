@@ -30,7 +30,7 @@ function result(playerPoint, computerPoint) {
     runningScore.innerHTML = `GMAE OVER<br>${playerPoint} to ${computerPoint}<br>You Win!`;
     scoreBoard.appendChild(runningScore);
   } else if (playerPoint < computerPoint) {
-    runningScore.innerHTML = `GMAE OVER<br>You Lose!<br>${playerPoint} to ${computerPoint}<br>You Lose!`;
+    runningScore.innerHTML = `GMAE OVER<br>${playerPoint} to ${computerPoint}<br>You Lose!`;
     scoreBoard.appendChild(runningScore);
   } else {
     runningScore.innerHTML = `GMAE OVER<br>${playerPoint} to ${computerPoint}<br>Tie`;
