@@ -26,19 +26,17 @@ function game(s) {
 }
 
 function result(playerPoint, computerPoint) {
-  // console.log("\n");
-  console.log("GAME OVER!!!!!!!");
   if (playerPoint > computerPoint) {
-    runningScore.innerHTML = `GMAE OVER<br>You Win! ${playerPoint} to ${computerPoint}`;
-    scoreDiv.appendChild(runningScore);
+    runningScore.innerHTML = `GMAE OVER<br>${playerPoint} to ${computerPoint}<br>You Win!`;
+    scoreBoard.appendChild(runningScore);
   } else if (playerPoint < computerPoint) {
-    runningScore.innerHTML = `GMAE OVER<br>You Lose! ${playerPoint} to ${computerPoint}`;
-    scoreDiv.appendChild(runningScore);
+    runningScore.innerHTML = `GMAE OVER<br>You Lose!<br>${playerPoint} to ${computerPoint}<br>You Lose!`;
+    scoreBoard.appendChild(runningScore);
   } else {
-    runningScore.innerHTML = `GMAE OVER<br>Tie ${playerPoint} to ${computerPoint}`;
-    scoreDiv.appendChild(runningScore);
+    runningScore.innerHTML = `GMAE OVER<br>${playerPoint} to ${computerPoint}<br>Tie`;
+    scoreBoard.appendChild(runningScore);
   }
-
+  // End the game
   buttons.forEach((button) => {
     button.removeEventListener("click", playerPlay);
   });
@@ -48,37 +46,37 @@ function playRound(player, computer) {
   switch (true) {
     case player == computer:
       runningScore.innerHTML = `Tie<br>${playerPoint} to ${computerPoint}`;
-      scoreDiv.appendChild(runningScore);
+      scoreBoard.appendChild(runningScore);
       break;
     case player == "rock" && computer == "scissors":
       playerPoint++;
       runningScore.innerHTML = `You Win!<br>Rock beats Scissors<br>${playerPoint} to ${computerPoint}`;
-      scoreDiv.appendChild(runningScore);
+      scoreBoard.appendChild(runningScore);
       break;
     case computer == "rock" && player == "scissors":
       computerPoint++;
       runningScore.innerHTML = `You Lose!<br>Rock beats Scissors<br>${playerPoint} to ${computerPoint}`;
-      scoreDiv.appendChild(runningScore);
+      scoreBoard.appendChild(runningScore);
       break;
     case player == "paper" && computer == "rock":
       playerPoint++;
       runningScore.innerHTML = `You Win!<br>Paper beats Rock<br>${playerPoint} to ${computerPoint}`;
-      scoreDiv.appendChild(runningScore);
+      scoreBoard.appendChild(runningScore);
       break;
     case computer == "paper" && player == "rock":
       computerPoint++;
       runningScore.innerHTML = `You Lose!<br>Paper beats Rock<br>${playerPoint} to ${computerPoint}`;
-      scoreDiv.appendChild(runningScore);
+      scoreBoard.appendChild(runningScore);
       break;
     case player == "scissors" && computer == "paper":
       playerPoint++;
       runningScore.innerHTML = `You Win!<br>Scissors beats Paper<br>${playerPoint} to ${computerPoint}`;
-      scoreDiv.appendChild(runningScore);
+      scoreBoard.appendChild(runningScore);
       break;
     case computer == "scissors" && player == "paper":
       computerPoint++;
       runningScore.innerHTML = `You Lose!<br>Scissors beats Paper<br>${playerPoint} to ${computerPoint}`;
-      scoreDiv.appendChild(runningScore);
+      scoreBoard.appendChild(runningScore);
       break;
   }
 }
@@ -88,5 +86,5 @@ buttons.forEach((button) => {
   button.addEventListener("click", playerPlay);
 });
 
-const scoreDiv = document.querySelector(".running-score");
+const scoreBoard = document.querySelector(".running-score");
 const runningScore = document.createElement("h1");
