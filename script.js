@@ -4,9 +4,6 @@ const SELEARRAY = ["rock", "paper", "scissors"];
 let playerPoint = 0;
 let computerPoint = 0;
 
-// Start the game
-// game();
-
 // computer selection
 function computerPlay() {
   const computerSelection =
@@ -16,21 +13,13 @@ function computerPlay() {
 
 function playerPlay() {
   const playerSelection = this.classList[0];
-  console.log(this);
   game(playerSelection);
 }
 
 function game(s) {
-  // let playerSelection = prompt("rock, paper or scissors?").toLowerCase();
-  // let playerSelection = playerPlay();
   const playerSelection = s;
-  console.log(`You: ${playerSelection}`);
   let computerSelection = computerPlay();
-  console.log(`Computer: ${computerSelection}`);
-
-  // Compare Selections
   playRound(playerSelection, computerSelection);
-
   if (playerPoint > 4 || computerPoint > 4) {
     result(playerPoint, computerPoint);
   }
@@ -40,11 +29,14 @@ function result(playerPoint, computerPoint) {
   // console.log("\n");
   console.log("GAME OVER!!!!!!!");
   if (playerPoint > computerPoint) {
-    console.log(`You Win! ${playerPoint} to ${computerPoint}`);
+    runningScore.innerHTML = `GMAE OVER<br>You Win! ${playerPoint} to ${computerPoint}`;
+    scoreDiv.appendChild(runningScore);
   } else if (playerPoint < computerPoint) {
-    console.log(`You Lose! ${playerPoint} to ${computerPoint}`);
+    runningScore.innerHTML = `GMAE OVER<br>You Lose! ${playerPoint} to ${computerPoint}`;
+    scoreDiv.appendChild(runningScore);
   } else {
-    console.log(`Tie! ${playerPoint} to ${computerPoint}`);
+    runningScore.innerHTML = `GMAE OVER<br>Tie ${playerPoint} to ${computerPoint}`;
+    scoreDiv.appendChild(runningScore);
   }
 
   buttons.forEach((button) => {
@@ -55,44 +47,46 @@ function result(playerPoint, computerPoint) {
 function playRound(player, computer) {
   switch (true) {
     case player == computer:
-      console.log("Tie!");
+      runningScore.innerHTML = `Tie<br>${playerPoint} to ${computerPoint}`;
+      scoreDiv.appendChild(runningScore);
       break;
     case player == "rock" && computer == "scissors":
       playerPoint++;
-      console.log("You Win! Rock beats Scissors");
+      runningScore.innerHTML = `You Win!<br>Rock beats Scissors<br>${playerPoint} to ${computerPoint}`;
+      scoreDiv.appendChild(runningScore);
       break;
     case computer == "rock" && player == "scissors":
       computerPoint++;
-      console.log("You Lose! Rock beats Scissors");
+      runningScore.innerHTML = `You Lose!<br>Rock beats Scissors<br>${playerPoint} to ${computerPoint}`;
+      scoreDiv.appendChild(runningScore);
       break;
     case player == "paper" && computer == "rock":
       playerPoint++;
-      console.log("You Win! Paper beats Rock");
+      runningScore.innerHTML = `You Win!<br>Paper beats Rock<br>${playerPoint} to ${computerPoint}`;
+      scoreDiv.appendChild(runningScore);
       break;
     case computer == "paper" && player == "rock":
       computerPoint++;
-      console.log("You Lose! Paper beats Rock");
+      runningScore.innerHTML = `You Lose!<br>Paper beats Rock<br>${playerPoint} to ${computerPoint}`;
+      scoreDiv.appendChild(runningScore);
       break;
     case player == "scissors" && computer == "paper":
       playerPoint++;
-      console.log("You Win! Scissors beats Paper");
+      runningScore.innerHTML = `You Win!<br>Scissors beats Paper<br>${playerPoint} to ${computerPoint}`;
+      scoreDiv.appendChild(runningScore);
       break;
     case computer == "scissors" && player == "paper":
       computerPoint++;
-      console.log("You Lose! Scissors beats Paper");
+      runningScore.innerHTML = `You Lose!<br>Scissors beats Paper<br>${playerPoint} to ${computerPoint}`;
+      scoreDiv.appendChild(runningScore);
       break;
   }
 }
-
-// const seleRock = document.querySelector(".rock");
-// const selePaper = document.querySelector(".paper");
-// const seleScissors = document.querySelector(".scissors");
-
-// seleRock.addEventListener("click", playerPlay);
-// selePaper.addEventListener("click", playerPlay);
-// seleScissors.addEventListener("click", playerPlay);
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
   button.addEventListener("click", playerPlay);
 });
+
+const scoreDiv = document.querySelector(".running-score");
+const runningScore = document.createElement("h1");
