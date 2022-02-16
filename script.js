@@ -1,18 +1,17 @@
 "use strict";
 
-const SELEARRAY = ["rock", "paper", "scissors"];
+const poolArr = ["rock", "paper", "scissors"];
 let playerPoint = 0;
 let computerPoint = 0;
 
 // computer selection
 function computerPlay() {
-  const computerSelection =
-    SELEARRAY[Math.trunc(Math.random() * 3)].toLocaleLowerCase();
+  const computerSelection = poolArr[Math.trunc(Math.random() * 3)];
   return computerSelection;
 }
 
 function playerPlay() {
-  const playerSelection = this.classList[0];
+  const playerSelection = this.classList[0]; // wow
   game(playerSelection);
 }
 
